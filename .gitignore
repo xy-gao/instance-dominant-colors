@@ -1,5 +1,6 @@
-# Created by https://www.gitignore.io/api/macos,python
-# Edit at https://www.gitignore.io/?templates=macos,python
+
+# Created by https://www.gitignore.io/api/venv,macos,python
+# Edit at https://www.gitignore.io/?templates=venv,macos,python
 
 ### macOS ###
 # General
@@ -134,4 +135,19 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# End of https://www.gitignore.io/api/macos,python
+### venv ###
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+pyvenv.cfg
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-selfcheck.json
+
+# End of https://www.gitignore.io/api/venv,macos,python
+
+*.h5
