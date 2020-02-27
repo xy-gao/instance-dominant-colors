@@ -155,3 +155,4 @@ pip-selfcheck.json
 =======
 # End of https://www.gitignore.io/api/venv,macos,python
 >>>>>>> 1acdae568f4c183f3b8cd1ff1a302bade84c00bd
+.vscode
