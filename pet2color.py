@@ -28,10 +28,10 @@ class Pet2Color:
         sorted_tup = sorted(tup, key=lambda n: n[1], reverse=True)
         return sorted_tup
 
-    def visualize(self):
+    def visualize(self, output_path):
         sorted_tup = self.dominant_colors()
         colors = [c for c, p in sorted_tup]
         colors = [list(map(lambda n: n / 255, c)) for c in colors]
         percents = [p for c, p in sorted_tup]
         plt.pie(percents, colors=colors, counterclock=False, startangle=90)
-        plt.savefig('./output/output.png')
+        plt.savefig(output_path)
