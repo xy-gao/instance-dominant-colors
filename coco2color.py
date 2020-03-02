@@ -22,7 +22,7 @@ class Coco2Color:
         self.cluster = KMeans(n_clusters=num_of_color).fit(self.rgbs)
 
     def dominant_colors(self):
-        colors = self.cluster.cluster_centers_.astype(int).tolist()
+        colors = np.round(self.cluster.cluster_centers_).astype(np.uint8).tolist()
         percents = cluster_percents(self.cluster.labels_)
         tup = zip(colors, percents)
         sorted_tup = sorted(tup, key=lambda n: n[1], reverse=True)
