@@ -13,12 +13,12 @@ def cluster_percents(labels):
     return percents
 
 
-class Pet2Color:
-    def __init__(self, image, pet_type, num_of_color=5):
+class Coco2Color:
+    def __init__(self, image, class_name, num_of_color=5):
         self.image = image
-        self.pet_type = pet_type
+        self.class_name = class_name
         self.num_of_color = num_of_color
-        self.rgbs = segment_color_list(self.image, self.pet_type)
+        self.rgbs = segment_color_list(self.image, self.class_name)
         self.cluster = KMeans(n_clusters=num_of_color).fit(self.rgbs)
 
     def dominant_colors(self):
