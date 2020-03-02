@@ -1,29 +1,39 @@
 import os
+import sys
 from mrcnn import utils
 from mrcnn.config import Config
 import mrcnn.model as modellib
 import skimage.io
+from skimage.color import rgba2rgb
+import numpy as np
 
 
 def segment_color_list(image_file, class_name):
     image = skimage.io.imread(image_file)
+    if image.shape[2] == 4:
+        image = rgba2rgb(image)
+        image = np.round(image*255).astype(np.uint8)
     result, class_names = segmentation(image)
-    pet_id = class_names.index(class_name)
+    class_id = class_names.index(class_name)
     class_ids = list(result['class_ids'])
 
-    if pet_id in class_ids:
-        pet_index = class_ids.index(pet_id)
+    if class_id in class_ids:
+        class_index = class_ids.index(class_id)
 
-    mask = []
-    for row in result['masks']:
-        mask.append([i[pet_index] for i in row])
+        mask = []
+        for row in result['masks']:
+            mask.append([i[class_index] for i in row])
 
-    color_list = []
-    for row, bools in list(zip(image, mask)):
-        for i in row[bools].tolist():
-            color_list.append(i)
+        color_list = []
+        for row, bools in list(zip(image, mask)):
+            for i in row[bools].tolist():
+                color_list.append(i)
 
-    return color_list
+        return color_list
+
+    else:
+        print(f'{class_name} is not detected')
+        sys.exit()
 
 
 class CocoConfig(Config):
