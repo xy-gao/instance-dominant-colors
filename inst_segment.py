@@ -22,14 +22,23 @@ def segment_color_list(image_file, class_name):
 
         mask = []
         for row in result['masks']:
-            mask.append([i[class_index] for i in row])
+            mask.append([[i[class_index]] for i in row])
+        mask = np.array(mask)
 
         color_list = []
         for row, bools in list(zip(image, mask)):
-            for i in row[bools].tolist():
+            for i in row[bools.flatten()].tolist():
                 color_list.append(i)
 
-        return color_list
+        inst_info = (
+            image,
+            result['rois'][class_index: class_index+1],
+            mask,
+            result['class_ids'][class_index: class_index+1],
+            class_names
+            )
+
+        return color_list, inst_info
 
     else:
         print(f'{class_name} is not detected')

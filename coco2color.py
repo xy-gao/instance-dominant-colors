@@ -2,6 +2,7 @@ from inst_segment import segment_color_list
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import numpy as np
+from mrcnn.visualize import display_instances
 
 
 def cluster_percents(labels):
@@ -14,12 +15,15 @@ def cluster_percents(labels):
 
 
 class Coco2Color:
-    def __init__(self, image, class_name, num_of_color=5):
-        self.image = image
+    def __init__(self, image_file, class_name, num_of_color=5):
+        self.image_file = image_file
         self.class_name = class_name
         self.num_of_color = num_of_color
-        self.rgbs = segment_color_list(self.image, self.class_name)
+        self.rgbs, self.inst_info = segment_color_list(self.image_file, self.class_name)
         self.cluster = KMeans(n_clusters=num_of_color).fit(self.rgbs)
+
+    def display_instance(self):
+        display_instances(*self.inst_info, figsize=(6, 6))
 
     def dominant_colors(self):
         colors = np.round(self.cluster.cluster_centers_).astype(np.uint8).tolist()
@@ -34,4 +38,4 @@ class Coco2Color:
         colors = [list(map(lambda n: n / 255, c)) for c in colors]
         percents = [p for c, p in sorted_tup]
         plt.pie(percents, colors=colors, counterclock=False, startangle=90)
-        plt.savefig(output_path)
+        plt.savefig(output_path, bbox_inches='tight')
