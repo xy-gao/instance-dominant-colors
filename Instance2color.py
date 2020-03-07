@@ -14,7 +14,7 @@ def cluster_percents(labels):
     return percents
 
 
-class Coco2Color:
+class Instance2Color:
     def __init__(self, image_file, class_name, num_of_color=5):
         self.rgbs, self.inst_info = segment_color_list(image_file, class_name)
         self.cluster = KMeans(n_clusters=num_of_color).fit(self.rgbs)
