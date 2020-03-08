@@ -22,6 +22,7 @@ class Instance2Color:
 
     def visualize_instance(self, output_file):
         image, _, mask, _, _ = self.inst_info
+        image = image.copy()
         mask = mask[:, :, 0]
         image_masked = apply_mask(image, mask, [1, 0, 0], alpha=0.6)
         im = Image.fromarray(image_masked)
