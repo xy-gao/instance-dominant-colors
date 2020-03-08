@@ -9,3 +9,4 @@ keras>=2.0.8
 opencv-python
 h5py
 imgaug
+scikit-learn
