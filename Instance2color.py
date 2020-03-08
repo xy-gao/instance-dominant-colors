@@ -2,7 +2,8 @@ from inst_segment import segment_color_list
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import numpy as np
-from mrcnn.visualize import display_instances
+from mrcnn.visualize import apply_mask
+from PIL import Image
 
 
 def cluster_percents(labels):
@@ -19,8 +20,12 @@ class Instance2Color:
         self.rgbs, self.inst_info = segment_color_list(image_file, class_name)
         self.cluster = KMeans(n_clusters=num_of_color).fit(self.rgbs)
 
-    def display_instance(self):
-        display_instances(*self.inst_info, figsize=(6, 6))
+    def visualize_instance(self, output_file):
+        image, _, mask, _, _ = self.inst_info
+        mask = mask[:, :, 0]
+        image_masked = apply_mask(image, mask, [1, 0, 0], alpha=0.6)
+        im = Image.fromarray(image_masked)
+        im.save(output_file)
 
     def dominant_colors(self):
         colors = np.round(self.cluster.cluster_centers_).astype(np.uint8).tolist()
