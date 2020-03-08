@@ -8,24 +8,24 @@ Extract dominant colors method: [k-means clustering](https://scikit-learn.org/st
 # Example
 pizza
 <p align="center">
-    <img src="sample_img/pizza.jpg" width="500">
+    <img src="sample_img/pizza.jpg" width="400">
+    <img src="sample_img/pizza_inst.jpg" width="400">
     <br>Photo by mahyar motebassem on Unsplash</br>
-    <img src="sample_img/pizza_inst.jpg" width="300">
     <img src="sample_img/pizza_out.jpg" width="300">
 </p>
 
 traffic light
 <p align="center">
-    <img src="sample_img/trafficlight.jpg" width="500">
+    <img src="sample_img/trafficlight.jpg" width="400">
+    <img src="sample_img/trafficlight_inst.jpg" width="400">
     <br>Photo by Aleksandr Kotlyar on Unsplash</br>
-    <img src="sample_img/trafficlight_inst.jpg" width="300">
     <img src="sample_img/trafficlight_out.jpg" width="300">
 </p>
 
 dog
 <p align="center">
-    <img src="sample_img/dog.jpg" width="500">
-    <img src="sample_img/dog_inst.jpg" width="300">
+    <img src="sample_img/dog.jpg" width="400">
+    <img src="sample_img/dog_inst.jpg" width="400">
     <img src="sample_img/dog_out.jpg" width="300">
 </p>
 
