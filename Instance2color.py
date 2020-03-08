@@ -29,10 +29,10 @@ class Instance2Color:
         sorted_tup = sorted(tup, key=lambda n: n[1], reverse=True)
         return sorted_tup
 
-    def visualize_pie(self, output_path):
+    def visualize_pie(self, output_file):
         sorted_tup = self.dominant_colors()
         colors = [c for c, p in sorted_tup]
         colors = [list(map(lambda n: n / 255, c)) for c in colors]
         percents = [p for c, p in sorted_tup]
         plt.pie(percents, colors=colors, counterclock=False, startangle=90)
-        plt.savefig(output_path, bbox_inches='tight')
+        plt.savefig(output_file, bbox_inches='tight')
