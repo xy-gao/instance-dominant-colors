@@ -42,6 +42,22 @@ $ pip3 install -r requirements.txt
 from instance2color import Instance2Color
 
 inst = Instance2Color(image_file='sample_img/pizza.jpg', class_name='pizza', num_of_color=5)
+# available class names are:
+# class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
+#                 'bus', 'train', 'truck', 'boat', 'traffic light',
+#                 'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird',
+#                 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear',
+#                 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie',
+#                 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+#                 'kite', 'baseball bat', 'baseball glove', 'skateboard',
+#                 'surfboard', 'tennis racket', 'bottle', 'wine glass', 'cup',
+#                 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
+#                 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza',
+#                 'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed',
+#                 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote',
+#                 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster',
+#                 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
+#                 'teddy bear', 'hair drier', 'toothbrush']
 
 print(inst.dominant_colors()) # RGBs and percentages
 # [([174, 77, 68], 29.46), ([223, 139, 100], 26.41), ([99, 46, 38], 19.95), ([95, 181, 107], 12.9), ([227, 205, 189], 11.29)]
