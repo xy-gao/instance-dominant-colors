@@ -58,9 +58,10 @@ inst = Instance2Color(image_file='sample_img/pizza.jpg', class_name='pizza', num
 #                 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster',
 #                 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
 #                 'teddy bear', 'hair drier', 'toothbrush']
+# model will be downloaded if not exist
 
 print(inst.dominant_colors()) # RGBs and percentages
-# [([174, 77, 68], 29.46), ([223, 139, 100], 26.41), ([99, 46, 38], 19.95), ([95, 181, 107], 12.9), ([227, 205, 189], 11.29)]
+# [([176, 79, 70], 30.35), ([222, 139, 101], 26.19), ([102, 51, 42], 19.43), ([97, 181, 108], 12.89), ([227, 207, 190], 11.14)]
 inst.visualize_pie(output_file='sample_img/pizza_pie_chart.jpg')
 # visualize pie chart
 inst.visualize_instance(output_file='sample_img/pizza_inst.jpg')
