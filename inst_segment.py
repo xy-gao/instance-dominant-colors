@@ -68,7 +68,7 @@ class CocoConfig(Config):
 def segmentation(image):
     ROOT_DIR = os.path.abspath("./")
     MODEL_DIR = os.path.join(ROOT_DIR, "logs")
-    COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
+    COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mrcnn/mask_rcnn_coco.h5")
 
     if not os.path.exists(COCO_MODEL_PATH):
         utils.download_trained_weights(COCO_MODEL_PATH)
