@@ -25,10 +25,7 @@ def segment_color_list(image_file, class_name):
             mask.append([[i[class_index]] for i in row])
         mask = np.array(mask)
 
-        color_list = []
-        for row, bools in list(zip(image, mask)):
-            for i in row[bools.flatten()].tolist():
-                color_list.append(i)
+        color_list = colorlist(image, mask)
 
         inst_info = (
             image,
@@ -43,6 +40,14 @@ def segment_color_list(image_file, class_name):
     else:
         print(f'{class_name} is not detected')
         sys.exit()
+
+
+def colorlist(image, mask):
+    color_list = []
+    for row, bools in list(zip(image, mask)):
+        for i in row[bools.flatten()].tolist():
+            color_list.append(i)
+    return color_list
 
 
 class CocoConfig(Config):
