@@ -6,7 +6,6 @@ import mrcnn.model as modellib
 import skimage.io
 from skimage.color import rgba2rgb
 import numpy as np
-from PIL import Image
 
 
 def segment_color_list(image_file, class_name):
@@ -26,26 +25,14 @@ def segment_color_list(image_file, class_name):
             mask.append([[i[class_index]] for i in row])
         mask = np.array(mask)
 
-        rois = result['rois'][class_index: class_index+1]
-        y1, x1, y2, x2 = rois[0]
-        crop_img = np.dstack((image, mask.astype(int)*255))[y1:y2, x1:x2]
-        crop_img = crop_img.astype(np.uint8)
-        im = Image.fromarray(crop_img)
-        im_resize = im.resize((256, 256))
-        img_resize_array = np.array(im_resize).tolist()
-
         color_list = []
-        for row in img_resize_array:
-            for pix in row:
-                if sum(pix) != 0:
-                    color_list.append(pix)
-
-        color_list = rgba2rgb(np.array([color_list])/255)*255
-        color_list = color_list.astype(int)[0].tolist()
+        for row, bools in list(zip(image, mask)):
+            for i in row[bools.flatten()].tolist():
+                color_list.append(i)
 
         inst_info = (
             image,
-            rois,
+            result['rois'][class_index: class_index+1],
             mask,
             result['class_ids'][class_index: class_index+1],
             class_names
