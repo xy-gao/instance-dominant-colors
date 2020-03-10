@@ -10,3 +10,4 @@ opencv-python
 h5py
 imgaug
 scikit-learn
+ipython
